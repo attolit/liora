@@ -46,7 +46,7 @@ public class roleofscene : MonoBehaviour
     private int currentSceneIndex = 0;//scene kazoeru
     private int currentSerihuIndex = 0;//serihu bangou
     public int ransu;//ransu shori you
-    private bool end = true;
+    private bool end = true;//serihu zenbu deteruka
     private bool isChoosing = false;//sentakusi deruka denaika
 
     public System.Action onBattleEnd;//sentou shuuryou
@@ -63,10 +63,14 @@ public class roleofscene : MonoBehaviour
 
     void Update()// umaku itteruyo
     {
-        if (Input.GetKeyDown(KeyCode.Space) && end && !isChoosing)
+        if (Input.GetKeyDown(KeyCode.Space))
         {
-            ShowNextSerihu();
-            Debug.Log(isChoosing);
+            Debug.Log( "isChoosing" + isChoosing);
+            Debug.Log( "end" + end);
+            if (end && !isChoosing) {
+                ShowNextSerihu();
+                Debug.Log(isChoosing);
+            }
 
         }
         if (Input.GetKeyDown(KeyCode.N))
@@ -171,8 +175,10 @@ public class roleofscene : MonoBehaviour
 
     private IEnumerator WaitAndShowChoices()
     {
-        isChoosing = true; // いけたらいいな
-        yield return new WaitForSeconds(1.0f);
+       // Debug.Log(isChoosing);
+        isChoosing = true; //ごめん、全然必要だった
+        Debug.Log(isChoosing);
+        yield return new WaitForSeconds(.0f);
         ShowChoices();
     }
 
